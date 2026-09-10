@@ -24,10 +24,11 @@ export function MapPanel({
   compact = false,
 }: {
   locations: LocationRow[];
-  layers?: Partial<MapLayers>;
+  layers?: Partial<MapLayers> | undefined;
   height?: number;
   compact?: boolean;
 }) {
+
   return (
     <ClientOnly fallback={<MapSkeleton height={height} />}>
       <Suspense fallback={<MapSkeleton height={height} />}>

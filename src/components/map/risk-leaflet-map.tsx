@@ -38,10 +38,11 @@ export default function RiskLeafletMap({
   compact = false,
 }: {
   locations: LocationRow[];
-  layers?: Partial<MapLayers>;
+  layers?: Partial<MapLayers> | undefined;
   height?: number;
   compact?: boolean;
 }) {
+
   const l: MapLayers = {
     riskZones: true,
     rainfall: false,
