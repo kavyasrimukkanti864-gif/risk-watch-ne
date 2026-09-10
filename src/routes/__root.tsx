@@ -77,15 +77,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "LandslideGuard — AI Landslide Early Warning, NE India" },
+      {
+        name: "description",
+        content:
+          "AI-based early warning and landslide risk monitoring platform for the North Eastern Region of India.",
+      },
+      { name: "author", content: "LandslideGuard" },
+      { property: "og:title", content: "LandslideGuard — AI Landslide Early Warning" },
+      {
+        property: "og:description",
+        content:
+          "Monitoring, predicting and alerting for landslide risk across Assam and the North Eastern Region.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
+
     links: [
       {
         rel: "stylesheet",
