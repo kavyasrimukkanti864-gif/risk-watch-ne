@@ -12,7 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthenticatedAlertsRouteImport } from './routes/_authenticated/alerts'
+import { Route as AuthenticatedAnalyticsRouteImport } from './routes/_authenticated/analytics'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedFieldReportsRouteImport } from './routes/_authenticated/field-reports'
+import { Route as AuthenticatedPredictionRouteImport } from './routes/_authenticated/prediction'
 import { Route as AuthenticatedRiskMapRouteImport } from './routes/_authenticated/risk-map'
 import { Route as AuthenticatedRiskIdRouteImport } from './routes/_authenticated/risk.$id'
 
@@ -30,9 +33,25 @@ const AuthenticatedAlertsRoute = AuthenticatedAlertsRouteImport.update({
   path: '/alerts',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAnalyticsRoute = AuthenticatedAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedFieldReportsRoute =
+  AuthenticatedFieldReportsRouteImport.update({
+    id: '/field-reports',
+    path: '/field-reports',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPredictionRoute = AuthenticatedPredictionRouteImport.update({
+  id: '/prediction',
+  path: '/prediction',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedRiskMapRoute = AuthenticatedRiskMapRouteImport.update({
@@ -49,14 +68,20 @@ const AuthenticatedRiskIdRoute = AuthenticatedRiskIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/alerts': typeof AuthenticatedAlertsRoute
+  '/analytics': typeof AuthenticatedAnalyticsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/field-reports': typeof AuthenticatedFieldReportsRoute
+  '/prediction': typeof AuthenticatedPredictionRoute
   '/risk-map': typeof AuthenticatedRiskMapRoute
   '/risk/$id': typeof AuthenticatedRiskIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/alerts': typeof AuthenticatedAlertsRoute
+  '/analytics': typeof AuthenticatedAnalyticsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/field-reports': typeof AuthenticatedFieldReportsRoute
+  '/prediction': typeof AuthenticatedPredictionRoute
   '/risk-map': typeof AuthenticatedRiskMapRoute
   '/risk/$id': typeof AuthenticatedRiskIdRoute
 }
@@ -65,21 +90,43 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/_authenticated/alerts': typeof AuthenticatedAlertsRoute
+  '/_authenticated/analytics': typeof AuthenticatedAnalyticsRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/field-reports': typeof AuthenticatedFieldReportsRoute
+  '/_authenticated/prediction': typeof AuthenticatedPredictionRoute
   '/_authenticated/risk-map': typeof AuthenticatedRiskMapRoute
   '/_authenticated/risk/$id': typeof AuthenticatedRiskIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/alerts' | '/dashboard' | '/risk-map' | '/risk/$id'
+  fullPaths:
+    | '/'
+    | '/alerts'
+    | '/analytics'
+    | '/dashboard'
+    | '/field-reports'
+    | '/prediction'
+    | '/risk-map'
+    | '/risk/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/alerts' | '/dashboard' | '/risk-map' | '/risk/$id'
+  to:
+    | '/'
+    | '/alerts'
+    | '/analytics'
+    | '/dashboard'
+    | '/field-reports'
+    | '/prediction'
+    | '/risk-map'
+    | '/risk/$id'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/_authenticated/alerts'
+    | '/_authenticated/analytics'
     | '/_authenticated/dashboard'
+    | '/_authenticated/field-reports'
+    | '/_authenticated/prediction'
     | '/_authenticated/risk-map'
     | '/_authenticated/risk/$id'
   fileRoutesById: FileRoutesById
@@ -112,11 +159,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAlertsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/analytics': {
+      id: '/_authenticated/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AuthenticatedAnalyticsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/field-reports': {
+      id: '/_authenticated/field-reports'
+      path: '/field-reports'
+      fullPath: '/field-reports'
+      preLoaderRoute: typeof AuthenticatedFieldReportsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/prediction': {
+      id: '/_authenticated/prediction'
+      path: '/prediction'
+      fullPath: '/prediction'
+      preLoaderRoute: typeof AuthenticatedPredictionRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/risk-map': {
@@ -138,14 +206,20 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAlertsRoute: typeof AuthenticatedAlertsRoute
+  AuthenticatedAnalyticsRoute: typeof AuthenticatedAnalyticsRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedFieldReportsRoute: typeof AuthenticatedFieldReportsRoute
+  AuthenticatedPredictionRoute: typeof AuthenticatedPredictionRoute
   AuthenticatedRiskMapRoute: typeof AuthenticatedRiskMapRoute
   AuthenticatedRiskIdRoute: typeof AuthenticatedRiskIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAlertsRoute: AuthenticatedAlertsRoute,
+  AuthenticatedAnalyticsRoute: AuthenticatedAnalyticsRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedFieldReportsRoute: AuthenticatedFieldReportsRoute,
+  AuthenticatedPredictionRoute: AuthenticatedPredictionRoute,
   AuthenticatedRiskMapRoute: AuthenticatedRiskMapRoute,
   AuthenticatedRiskIdRoute: AuthenticatedRiskIdRoute,
 }
