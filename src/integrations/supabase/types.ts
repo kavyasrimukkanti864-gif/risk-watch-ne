@@ -14,7 +14,335 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      alerts: {
+        Row: {
+          created_at: string
+          id: string
+          location_id: string | null
+          location_name: string
+          message: string
+          predicted_in: string
+          risk_score: number
+          severity: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          location_id?: string | null
+          location_name: string
+          message?: string
+          predicted_in?: string
+          risk_score?: number
+          severity?: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          location_id?: string | null
+          location_name?: string
+          message?: string
+          predicted_in?: string
+          risk_score?: number
+          severity?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "alerts_location_id_fkey"
+            columns: ["location_id"]
+            isOneToOne: false
+            referencedRelation: "risk_locations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      data_sources: {
+        Row: {
+          category: string
+          description: string
+          id: string
+          last_sync: string
+          latency_ms: number
+          name: string
+          provider: string
+          refresh_interval: string
+          status: string
+        }
+        Insert: {
+          category?: string
+          description?: string
+          id?: string
+          last_sync?: string
+          latency_ms?: number
+          name: string
+          provider?: string
+          refresh_interval?: string
+          status?: string
+        }
+        Update: {
+          category?: string
+          description?: string
+          id?: string
+          last_sync?: string
+          latency_ms?: number
+          name?: string
+          provider?: string
+          refresh_interval?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      field_reports: {
+        Row: {
+          created_at: string
+          description: string
+          gps_latitude: number | null
+          gps_longitude: number | null
+          id: string
+          location_id: string | null
+          location_name: string
+          photo_url: string | null
+          report_type: string
+          reporter_name: string
+          severity: string
+          status: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          gps_latitude?: number | null
+          gps_longitude?: number | null
+          id?: string
+          location_id?: string | null
+          location_name: string
+          photo_url?: string | null
+          report_type: string
+          reporter_name?: string
+          severity?: string
+          status?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          gps_latitude?: number | null
+          gps_longitude?: number | null
+          id?: string
+          location_id?: string | null
+          location_name?: string
+          photo_url?: string | null
+          report_type?: string
+          reporter_name?: string
+          severity?: string
+          status?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "field_reports_location_id_fkey"
+            columns: ["location_id"]
+            isOneToOne: false
+            referencedRelation: "risk_locations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      predictions: {
+        Row: {
+          confidence: number
+          created_at: string
+          id: string
+          location_id: string | null
+          location_name: string
+          model: string
+          predicted_risk: string
+          prediction_window: string
+          probability: number
+        }
+        Insert: {
+          confidence?: number
+          created_at?: string
+          id?: string
+          location_id?: string | null
+          location_name: string
+          model?: string
+          predicted_risk?: string
+          prediction_window?: string
+          probability?: number
+        }
+        Update: {
+          confidence?: number
+          created_at?: string
+          id?: string
+          location_id?: string | null
+          location_name?: string
+          model?: string
+          predicted_risk?: string
+          prediction_window?: string
+          probability?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "predictions_location_id_fkey"
+            columns: ["location_id"]
+            isOneToOne: false
+            referencedRelation: "risk_locations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string
+          id: string
+          organization: string | null
+          role: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string
+          id: string
+          organization?: string | null
+          role?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string
+          id?: string
+          organization?: string | null
+          role?: string
+        }
+        Relationships: []
+      }
+      risk_history: {
+        Row: {
+          id: string
+          location_id: string
+          rainfall: number
+          recorded_on: string
+          risk_score: number
+        }
+        Insert: {
+          id?: string
+          location_id: string
+          rainfall?: number
+          recorded_on: string
+          risk_score: number
+        }
+        Update: {
+          id?: string
+          location_id?: string
+          rainfall?: number
+          recorded_on?: string
+          risk_score?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "risk_history_location_id_fkey"
+            columns: ["location_id"]
+            isOneToOne: false
+            referencedRelation: "risk_locations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      risk_locations: {
+        Row: {
+          district: string
+          elevation: number
+          id: string
+          land_cover: string
+          latitude: number
+          longitude: number
+          name: string
+          nearby_villages: string
+          population: number
+          rainfall_24h: number
+          risk_score: number
+          slope_angle: number
+          soil_moisture: number
+          state: string
+          updated_at: string
+        }
+        Insert: {
+          district: string
+          elevation?: number
+          id?: string
+          land_cover?: string
+          latitude: number
+          longitude: number
+          name: string
+          nearby_villages?: string
+          population?: number
+          rainfall_24h?: number
+          risk_score?: number
+          slope_angle?: number
+          soil_moisture?: number
+          state?: string
+          updated_at?: string
+        }
+        Update: {
+          district?: string
+          elevation?: number
+          id?: string
+          land_cover?: string
+          latitude?: number
+          longitude?: number
+          name?: string
+          nearby_villages?: string
+          population?: number
+          rainfall_24h?: number
+          risk_score?: number
+          slope_angle?: number
+          soil_moisture?: number
+          state?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      settings: {
+        Row: {
+          critical_alerts: boolean
+          email_notifications: boolean
+          language: string
+          realtime_alerts: boolean
+          sms_notifications: boolean
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          critical_alerts?: boolean
+          email_notifications?: boolean
+          language?: string
+          realtime_alerts?: boolean
+          sms_notifications?: boolean
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          critical_alerts?: boolean
+          email_notifications?: boolean
+          language?: string
+          realtime_alerts?: boolean
+          sms_notifications?: boolean
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
